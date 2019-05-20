@@ -1,0 +1,21 @@
+display: block;框的换行
+margin: 0 auto;横居中，竖不居中
+padding: 10px 0;内边距是10px宽度和高度的设定
+box-sizing: border-box;宽度和高度的确定
+ justify-content: center;居中
+transition: background-color 1s 颜色渐变
+cursor: pointer 鼠标悬停事件
+focus 伪类选择器
+float:left  左浮动
+
+git add 文件名
+git commit -m "信息"
+git push origin master
+
+justify-content:space-evenly
+
+sqrt开方
+
+Alt+Insert，可以生成构造器/Getter/Setter等
+
+Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch
