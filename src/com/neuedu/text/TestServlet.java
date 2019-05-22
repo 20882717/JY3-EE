@@ -14,11 +14,19 @@ public class TestServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<String> names = new ArrayList<>();
-        names.add("张三");
-        names.add("李四");
-        names.add("王五");
-        request.setAttribute("name",names);
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+//        List<User> names = new ArrayList<>();
+        Query qe = new Query();
+        List<User> user = qe.getQuery();
+       for (User use:user)
+       {
+           System.out.println(use);
+       }
+
+
+//        names.add("张三");
+//        names.add("李四");
+//        names.add("王五");
+//        request.setAttribute("name",names);
+//        request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 }
