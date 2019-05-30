@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class DruidDataSource {
 
-    private static Properties prop;
+    private static Properties prop = new Properties();
 
     private static DruidDataSource ds = null;
 

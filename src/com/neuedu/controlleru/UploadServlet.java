@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.util.UUID;
 
 @WebServlet(name = "UploadServlet",urlPatterns = "/upload")
 @MultipartConfig
@@ -17,7 +18,9 @@ public class UploadServlet extends HttpServlet {
         Part part = request.getPart("file1");
         String str = part.getSubmittedFileName();
         InputStream ins = part.getInputStream();
-        OutputStream outs = new FileOutputStream("c://img//"+str);
+        //创建随机数UUID
+        UUID uuid = UUID.randomUUID();
+        OutputStream outs = new FileOutputStream("c://img//"+uuid+str);
         int buffer = 0;
         byte[] bs = new byte[1024];
         while ((buffer = ins.read(bs))!=-1)
