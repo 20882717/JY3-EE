@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.neuedu.dao.UserDao">
+
+
+
+    <insert id="LonginUser" parameterType="User">
+
+        INSERT INTO user VALUES (#{id},#{username},#{password},#{retime})
+    </insert>
+
+
+
+    <select id="SingUser" parameterType="User" resultType="User">
+        SELECT username,password FROM user
+        <where>
+            <if test="username != null and username != ''">
+                AND  username = #{username}
+            </if>
+
+            <if test="password != null and password != ''">
+                AND  password = #{password}
+            </if>
+        </where>
+    </select>
+</mapper>

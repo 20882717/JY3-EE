@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.neuedu.dao.QueryVoDao">
+
+    <resultMap id="qvo" type="Data">
+
+        <result column="name" property="username"></result>
+    </resultMap>
+
+    <select id="getDataByName" parameterType="QueryVo" resultMap="qvo">
+
+        SELECT * FROM users WHERE name LIKE '%${data.username}%'
+
+
+    </select>
+
+
+
+    <select id="getUserById" parameterType="QueryVo" resultType="User">
+
+        SELECT * FROM  users WHERE id IN
+
+        <foreach collection="ids" separator="," open="(" close=")" item="item">
+
+            ${item}
+
+        </foreach>
+
+
+
+    </select>
+
+
+
+</mapper>

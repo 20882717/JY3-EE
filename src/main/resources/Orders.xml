@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.neuedu.dao.OrdersDao">
+
+    <resultMap id="oau" type="Orders">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userId"></result>
+        <result column="number" property="number"></result>
+        <result column="createtime" property="createtime"></result>
+        <result column="note" property="note"></result>
+
+        <association property="users" javaType="User">
+            <id column="id" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="birthday" property="birthday"></result>
+            <result column="sex" property="sex"></result>
+            <result column="address" property="address"></result>
+
+        </association>
+
+    </resultMap>
+
+    <select id="getOrdersAndUsers" resultMap="oau">
+
+SELECT u.id,u.username,u.birthday,u.sex,u.address,o.id oId,o.user_id,o.number,o.createtime,o.note FROM users u JOIN orders o
+ON u.id = o.user_id
+
+    </select>
+
+
+
+
+
+
+
+</mapper>

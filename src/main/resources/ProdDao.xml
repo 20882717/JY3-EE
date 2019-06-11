@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.neuedu.dao.ProdDao">
+
+    <select id="LiginProd" resultType="Prodact">
+        SELECT * FROM prodact;
+    </select>
+
+    <insert id="insertPro" parameterType="Prodact">
+
+        INSERT INTO prodact VALUES (#{pro_id},#{pro_name},#{pro_price},#{pro_image},#{pro_des},#{pro_stock},#{pro_date},#{pro_category_id},#{pro_factory})
+
+    </insert>
+
+    <update id="UpdateProd" parameterType="Prodact">
+
+        UPDATE prodact SET pro_name = #{pro_name},pro_price = #{pro_price},pro_image = #{pro_image},pro_des = #{pro_des},pro_stock = #{pro_stock},pro_date = #{pro_date},pro_category_id = #{pro_category_id},pro_factory = #{pro_factory} WHERE pro_id = #{pro_id}
+
+    </update>
+
+
+    <delete id="DelProd" parameterType="Prodact">
+        DELETE FROM prodact WHERE pro_id = #{pro_id}
+
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.neuedu.dao.UsersDao">
+
+    <sql id="sfu">
+         SELECT * FROM users
+    </sql>
+
+<select id="getUserBySexAndName" parameterType="User" resultType="User">
+
+
+   <include refid="sfu"></include>
+    <where>
+    <if test="sex !=null and sex != ''">
+
+        AND sex = #{sex}
+    </if>
+
+    <if test="username !=null and username != ''">
+        AND username LIKE '%${username}%'
+
+    </if>
+    </where>
+</select>
+    <resultMap id="iu" type="User">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="sex" property="sex"></result>
+        <collection property="orders" javaType="list" ofType="Orders">
+            <result column="number" property="number"></result>
+            <result column="createtime" property="createtime"></result>
+        </collection>
+    </resultMap>
+    <select id="getIdByUser" parameterType="int" resultMap="iu">
+
+        SELECT u.id,u.username,u.sex,o.number,o.createtime
+            FROM `users` u
+            JOIN orders o
+            ON u.id = o.user_id
+            WHERE u.id = #{values}
+    </select>
+</mapper>
